@@ -36,9 +36,14 @@ export function TransactionsTable() {
         {transactions.map(t => (
 				<tr key={t.id}>
 		      <td>{t.title}</td>
-		      <td className={t.type}>{t.amount}</td>
+          <td className={t.type}>
+            {new Intl.NumberFormat('en-SV', {
+              style: 'currency',
+              currency: 'SEK'
+            }).format(t.amount)}
+          </td>
 		      <td>{t.category}</td>
-		      <td>{t.createdAt}</td>
+		      <td>{new Intl.DateTimeFormat('sv-SV').format(new Date(t.createdAt))}</td>
 	      </tr>
 			))}
         </tbody>
